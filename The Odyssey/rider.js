@@ -7,6 +7,12 @@ export class Rider {
         this.y = 0;
         this.ySpeed = 0;
         this.gravity = 1;
+         
+        //bird man
+        this.image = new Image();
+        this.image.src = "bird.png"; 
+        this.width = 50;
+        this.height = 50;
     }
 
     update(terrain) {
