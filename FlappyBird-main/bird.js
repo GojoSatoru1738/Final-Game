@@ -15,7 +15,7 @@ export class Bird {
     this.canvas = canvas;
     this.pencil = pencil;
     this.image = new Image();
-    this.image.src = "bird.gif";
+    this.image.src = "bird.png";
 }
 
 
