@@ -4,7 +4,7 @@ export class Terrain {
         this.canvas = canvas;
         this.pencil = pencil;
 
-        // Terrain pieces (just two rectangles)
+        // Terrain pieces
         this.x1 = 0;
         this.y1 = canvas.height - 100;
         this.width = 400;
@@ -36,7 +36,7 @@ export class Terrain {
     draw() {
         this.pencil.fillStyle = "brown";
 
-        // Draw first ground piece
+        //ground piece 2
         this.pencil.fillRect(
             this.x1,
             this.y1,
@@ -44,7 +44,7 @@ export class Terrain {
             this.height
         );
 
-        // Draw second ground piece
+        //ground piece 1
         this.pencil.fillRect(
             this.x2,
             this.y2,
@@ -53,12 +53,12 @@ export class Terrain {
         );
     }
 
-    // Beginner simple “random height”
+    // Height
     getRandomHeight() {
         return this.canvas.height - (80 + Math.random() * 120);
     }
 
-    // Return the top of the ground under the player
+    //Return to ground
     groundYAt(x) {
         if (x >= this.x1 && x <= this.x1 + this.width) {
             return this.y1;
@@ -66,6 +66,6 @@ export class Terrain {
         if (x >= this.x2 && x <= this.x2 + this.width) {
             return this.y2;
         }
-        return this.canvas.height; // fallback
+        return this.canvas.height; 
     }
 }
