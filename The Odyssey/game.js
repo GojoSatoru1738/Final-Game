@@ -26,7 +26,7 @@ document.addEventListener("keypress", (e) => {
 
 // Score + Win 
 let score = 0;
-const WIN_SCORE = 2000;
+const WIN_SCORE = 2000; //LOCALSTORAGE SPOT/EVERY NEW FRAME = High Score
 
 // Collision
 function detectCollision(rider, terrain) {
