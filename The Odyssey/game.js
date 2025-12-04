@@ -58,3 +58,39 @@ function resetGame() {
 }
 
 setInterval(gameLoop, 20);
+
+
+function detectCollision(rider, terrain) {
+    const riderBottom = rider.y;
+    const riderTop = rider.y - rider.height;
+    const riderLeft = rider.x - rider.width/2;
+    const riderRight = rider.x + rider.width/2;
+
+    const platforms = [
+        { x: terrain.x1, y: terrain.y1, width: terrain.width, height: terrain.height },
+        { x: terrain.x2, y: terrain.y2, width: terrain.width, height: terrain.height },
+    ];
+
+    rider.onGround = false;
+
+    for (let platform of platforms) {
+        const platformTop = platform.y;
+        const platformLeft = platform.x;
+        const platformRight = platform.x + platform.width;
+
+        if (riderBottom >= platformTop && riderTop < platformTop &&
+            riderRight > platformLeft && riderLeft < platformRight) {
+            rider.y = platformTop;
+            rider.ySpeed = 0;
+            rider.onGround = true;
+            return false; // not losing
+        }
+    }
+
+    // Rider fell below canvas → lose
+    if (rider.y > rider.canvas.height) return true;
+
+    return false;
+}
+
+
