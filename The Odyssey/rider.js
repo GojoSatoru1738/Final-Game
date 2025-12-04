@@ -5,10 +5,18 @@ export class Rider {
 
         this.x = 150;
         this.y = 0;
-        this.ySpeed = 5;
+        this.ySpeed = 0;
         this.gravity = 1;
-         
-        
+        this.jumpStrength = -15;
+
+        // Event listener for jump
+        window.addEventListener("keydown", (e) => {
+            if (e.code === "Space" && this.onGround) {
+                this.ySpeed = this.jumpStrength;
+            }
+        });
+
+        this.onGround = false;
     }
 
     update(terrain) {
@@ -17,9 +25,12 @@ export class Rider {
 
         const groundY = terrain.groundYAt(this.x);
 
-        if (this.y > groundY - 40) { 
+        if (this.y >= groundY - 40) { 
             this.y = groundY - 40;
             this.ySpeed = 0;
+            this.onGround = true;
+        } else {
+            this.onGround = false;
         }
     }
 
