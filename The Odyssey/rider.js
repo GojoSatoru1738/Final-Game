@@ -22,6 +22,11 @@ export class Rider {
 
     draw() {
         this.pencil.fillStyle = "red";
-        this.pencil.fillRect(this.x - this.width/2, this.y - this.height, this.width, this.height);
+        this.pencil.fillRect(
+            this.x - this.width / 2,
+            this.y - this.height,
+            this.width,
+            this.height
+        );
     }
 }

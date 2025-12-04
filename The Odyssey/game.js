@@ -8,8 +8,8 @@ let pencil = canvas.getContext("2d");
 let terrain = new Terrain(canvas, pencil);
 let rider = new Rider(canvas, pencil);
 
-// Set rider 
-rider.y = terrain.y1 - rider.height;
+// Start rider on first platform
+rider.y = terrain.y1;
 rider.onGround = true;
 
 // Jump detection
@@ -60,13 +60,14 @@ function detectCollision(rider, terrain) {
         }
     }
 
-    // Rider fell below canvas = lose
+    // Rider fell below canvas  = lose
     if (rider.y > rider.canvas.height) return true;
 
     return false;
 }
 
-// Reset 
+
+// Reset game
 function resetGame() {
     score = 0;
     rider.ySpeed = 0;
@@ -74,7 +75,7 @@ function resetGame() {
     terrain = new Terrain(canvas, pencil);
 
     // Place rider on first terrain piece
-    rider.y = terrain.y1 - rider.height;
+    rider.y = terrain.y1;
     rider.onGround = true;
 }
 
