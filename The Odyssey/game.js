@@ -8,67 +8,36 @@ let pencil = canvas.getContext("2d");
 let terrain = new Terrain(canvas, pencil);
 let rider = new Rider(canvas, pencil);
 
-// -------- Step 1: Attach click/key listeners for jump --------
+// Set rider initial position on the first terrain
+rider.y = terrain.y1 - rider.height;
+rider.onGround = true;
+
+// Jump detection
 function detectJump() {
     if (rider.onGround) {
         rider.ySpeed = rider.jumpStrength;
     }
 }
 
-// Click or Space bar triggers jump
 canvas.addEventListener("click", detectJump);
 document.addEventListener("keypress", (e) => {
     if (e.code === "Space") detectJump();
 });
-// -----------------------------------------------------------
 
+// Score & win condition
 let score = 0;
 const WIN_SCORE = 1000;
 
-function gameLoop() {
-    pencil.clearRect(0, 0, canvas.width, canvas.height);
-
-    terrain.move();
-    terrain.draw();
-
-    rider.update(terrain);
-    rider.draw();
-
-    score += 1;
-    document.getElementById("scoreDisplay").innerText = "Score: " + score;
-
-    if (rider.y > canvas.height) {
-        alert("You Lose!");
-        resetGame();
-        return;
-    }
-
-    if (score >= WIN_SCORE) {
-        alert("You Win!");
-        resetGame();
-        return;
-    }
-}
-
-function resetGame() {
-    score = 0;
-    rider.y = 0;
-    rider.ySpeed = 5;
-    terrain = new Terrain(canvas, pencil);
-}
-
-setInterval(gameLoop, 20);
-
-
+// ---------------- Collision Detection ----------------
 function detectCollision(rider, terrain) {
     const riderBottom = rider.y;
     const riderTop = rider.y - rider.height;
-    const riderLeft = rider.x - rider.width/2;
-    const riderRight = rider.x + rider.width/2;
+    const riderLeft = rider.x - rider.width / 2;
+    const riderRight = rider.x + rider.width / 2;
 
     const platforms = [
-        { x: terrain.x1, y: terrain.y1, width: terrain.width, height: terrain.height },
-        { x: terrain.x2, y: terrain.y2, width: terrain.width, height: terrain.height },
+        { x: terrain.x1, y: terrain.y1, width: terrain.width },
+        { x: terrain.x2, y: terrain.y2, width: terrain.width },
     ];
 
     rider.onGround = false;
@@ -78,8 +47,12 @@ function detectCollision(rider, terrain) {
         const platformLeft = platform.x;
         const platformRight = platform.x + platform.width;
 
-        if (riderBottom >= platformTop && riderTop < platformTop &&
-            riderRight > platformLeft && riderLeft < platformRight) {
+        if (
+            riderBottom >= platformTop &&
+            riderTop < platformTop &&
+            riderRight > platformLeft &&
+            riderLeft < platformRight
+        ) {
             rider.y = platformTop;
             rider.ySpeed = 0;
             rider.onGround = true;
@@ -92,5 +65,47 @@ function detectCollision(rider, terrain) {
 
     return false;
 }
+// ------------------------------------------------------
 
+// Reset game
+function resetGame() {
+    score = 0;
+    rider.ySpeed = 0;
+    rider.x = 150;
+    terrain = new Terrain(canvas, pencil);
 
+    // Place rider on first terrain piece
+    rider.y = terrain.y1 - rider.height;
+    rider.onGround = true;
+}
+
+// Main game loop
+function gameLoop() {
+    pencil.clearRect(0, 0, canvas.width, canvas.height);
+
+    terrain.move();
+    terrain.draw();
+
+    rider.update();
+    rider.draw();
+
+    // Collision
+    if (detectCollision(rider, terrain)) {
+        alert("You Lose!");
+        resetGame();
+        return;
+    }
+
+    // Update score
+    score += 1;
+    document.getElementById("scoreDisplay").innerText = "Score: " + score;
+
+    // Win condition
+    if (score >= WIN_SCORE) {
+        alert("You Win!");
+        resetGame();
+        return;
+    }
+}
+
+setInterval(gameLoop, 20);
