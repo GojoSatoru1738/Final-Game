@@ -5,15 +5,20 @@ export class Terrain {
         this.pencil = pencil;
 
         // Terrain pieces
-        this.x1 = 0;
-        this.y1 = canvas.height - 100;
+       
         this.width = 400;
         this.height = 200;
+        this.speed = 7;
+
+         const buffer = 200;
+         const startX = canvas.width + this.width + buffer;
+
+     
+        this.x1 = startX;
+        this.y1 = canvas.height - 100;
 
         this.x2 = this.x1 + this.width;
         this.y2 = canvas.height - 80;
-
-        this.speed = 5;
     }
 
     move() {
