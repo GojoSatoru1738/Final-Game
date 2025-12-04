@@ -8,7 +8,7 @@ let pencil = canvas.getContext("2d");
 let terrain = new Terrain(canvas, pencil);
 let rider = new Rider(canvas, pencil);
 
-// Set rider initial position on the first terrain
+// Set rider 
 rider.y = terrain.y1 - rider.height;
 rider.onGround = true;
 
@@ -28,7 +28,7 @@ document.addEventListener("keypress", (e) => {
 let score = 0;
 const WIN_SCORE = 1000;
 
-// ---------------- Collision Detection ----------------
+// Collision
 function detectCollision(rider, terrain) {
     const riderBottom = rider.y;
     const riderTop = rider.y - rider.height;
@@ -60,14 +60,13 @@ function detectCollision(rider, terrain) {
         }
     }
 
-    // Rider fell below canvas → lose
+    // Rider fell below canvas = lose
     if (rider.y > rider.canvas.height) return true;
 
     return false;
 }
-// ------------------------------------------------------
 
-// Reset game
+// Reset 
 function resetGame() {
     score = 0;
     rider.ySpeed = 0;
