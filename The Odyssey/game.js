@@ -24,9 +24,9 @@ document.addEventListener("keypress", (e) => {
     if (e.code === "Space") detectJump();
 });
 
-// Score & win condition
+// Score + Win 
 let score = 0;
-const WIN_SCORE = 1000;
+const WIN_SCORE = 2000;
 
 // Collision
 function detectCollision(rider, terrain) {
