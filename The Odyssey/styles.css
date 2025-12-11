@@ -1,3 +1,4 @@
 #myCanvas {
     border: 10px solid gray;
+    image-rendering: pixelated; /* optional */
 }

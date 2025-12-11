@@ -86,7 +86,9 @@ function resetGame() {
 
 // Main game loop
 function gameLoop() {
-    
+    // Draw background
+    pencil.drawImage(skybox, 0, 0, canvas.width, canvas.height);
+
 
     terrain.move();
     terrain.draw();
