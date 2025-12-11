@@ -1,8 +1,13 @@
 import { Terrain } from "./terrain.js";
 import { Rider } from "./rider.js";
 
+
 let canvas = document.getElementById("myCanvas");
 let pencil = canvas.getContext("2d");
+
+// Load skybox 
+const skybox = new Image();
+skybox.src = "Skybox.png";
 
 // Create game objects
 let terrain = new Terrain(canvas, pencil);
@@ -81,7 +86,7 @@ function resetGame() {
 
 // Main game loop
 function gameLoop() {
-    pencil.clearRect(0, 0, canvas.width, canvas.height);
+    
 
     terrain.move();
     terrain.draw();
