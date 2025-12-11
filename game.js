@@ -1,5 +1,5 @@
-import { Terrain } from "./terrain.js";
-import { Rider } from "./rider.js";
+import { Terrain } from "./The Odyssey/terrain.js";
+import { Rider } from "./The Odyssey/rider.js";
 
 let canvas = document.getElementById("myCanvas");
 let pencil = canvas.getContext("2d");
