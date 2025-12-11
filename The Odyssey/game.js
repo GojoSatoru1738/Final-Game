@@ -12,6 +12,9 @@ let highScoreText = document.getElementById("highScoreText");
 // Score display
 let scoreDisplay = document.getElementById("scoreDisplay");
 
+let gameSpeed = 5;
+let gameIncrease = 25;
+
 // Load skybox
 const skybox = new Image();
 skybox.src = "Skybox.png";
@@ -53,6 +56,7 @@ function resetGame() {
     score = 0;
     terrain = new Terrain(canvas, pencil);
     rider = new Rider(canvas, pencil);
+    gamespeed = 5;
 
     rider.y = terrain.y1;
     rider.onGround = true;
@@ -129,6 +133,10 @@ function gameLoop() {
     // Score
     score++;
     scoreDisplay.innerText = "Score: " + score;
+
+    // Speed
+    gameSpeed += gameIncrease;
+
 }
 
 setInterval(gameLoop, 20);

@@ -12,8 +12,8 @@ export class Rider {
         this.gravity = 1;
         this.jumpStrength = -15;
 
-        this.width = 20;
-        this.height = 20;
+        this.width = 40;
+        this.height = 40;
 
         this.onGround = false;
     }
