@@ -5,12 +5,12 @@ let canvas = document.getElementById("myCanvas");
 let pencil = canvas.getContext("2d");
 
 // Start
-const startScreen = document.getElementById("startScreen");
-const startButton = document.getElementById("startButton");
-const highScoreText = document.getElementById("highScoreText");
+let startScreen = document.getElementById("startScreen");
+let startButton = document.getElementById("startButton");
+let highScoreText = document.getElementById("highScoreText");
 
 // Score display
-const scoreDisplay = document.getElementById("scoreDisplay");
+let scoreDisplay = document.getElementById("scoreDisplay");
 
 // Load skybox
 const skybox = new Image();
