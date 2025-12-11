@@ -4,7 +4,7 @@ export class Terrain {
         this.pencil = pencil;
 
         this.width = 300; // width
-        this.height = 400; //  thickness
+        this.height = 10; //  thickness
         this.speed = 8;
 
         // Start first terrain on screen
