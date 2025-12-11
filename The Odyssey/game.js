@@ -17,7 +17,7 @@ let gameIncrease = 25;
 
 // Load skybox
 const skybox = new Image();
-skybox.src = "Skybox.png";
+skybox.src = "skybox.png";
 
 // Game state
 let gameRunning = false;
